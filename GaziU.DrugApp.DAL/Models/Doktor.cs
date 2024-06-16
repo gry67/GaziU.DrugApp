@@ -9,9 +9,11 @@ namespace GaziU.DrugApp.DAL.Models
     public class Doktor : BaseEntity
     {
         public string Name { get; set; }
-        public DateTime? DogumTarihi { get ; set; }
+        public DateTime? DogumTarihi { get; set; }
         public string EPosta { get; set; }
         public string Sifre { get; set; }
-        public ICollection<Hasta> hastalar { get; set; }
+
+        public ICollection<Hasta> Hastalar { get; set; }
+        public ICollection<DoktorMuayeneKaydi> DoktorMuayeneKayitlari { get; set; }
     }
 }

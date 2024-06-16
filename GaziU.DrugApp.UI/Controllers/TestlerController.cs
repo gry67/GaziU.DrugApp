@@ -9,12 +9,15 @@ namespace GaziU.DrugApp.UI.Controllers
         private readonly IGenericManager<BeckAnksiyeteOlcegiKayit> anksiyeteManager;
         private readonly IGenericManager<BarnesAkatiziOlcegi> barnesManager;
         private readonly IGenericManager<BeckDepresyonOlcegiKayit> depresyonManager;
+        private readonly IGenericManager<Hasta> hastaManager;
 
-        public TestlerController(IGenericManager<BeckAnksiyeteOlcegiKayit> anksiyeteManager, IGenericManager<BarnesAkatiziOlcegi> barnesManager, IGenericManager<BeckDepresyonOlcegiKayit> depresyonManager)
+
+        public TestlerController(IGenericManager<BeckAnksiyeteOlcegiKayit> anksiyeteManager, IGenericManager<BarnesAkatiziOlcegi> barnesManager, IGenericManager<BeckDepresyonOlcegiKayit> depresyonManager, IGenericManager<Hasta> hastaManager)
         {
             this.anksiyeteManager = anksiyeteManager;
             this.barnesManager = barnesManager;
             this.depresyonManager = depresyonManager;
+            this.hastaManager = hastaManager;
         }
         public IActionResult Index()
         {
@@ -29,7 +32,8 @@ namespace GaziU.DrugApp.UI.Controllers
         public async Task<IActionResult> BeckAnksiyeteKayit(BeckAnksiyeteOlcegiKayit kayit) 
         {
             await anksiyeteManager.InsertAsync(kayit);
-            return View("Index");
+            var entity = hastaManager.GetByIdAsync(kayit.hastaId);
+            return View("/HastaIslemleri/HastaIslemleriIndex",entity);
         }
 
         public IActionResult BeckDepresyon(int hastaId)
@@ -40,7 +44,8 @@ namespace GaziU.DrugApp.UI.Controllers
         public async Task<IActionResult> BeckDepresyonKayit(BeckDepresyonOlcegiKayit kayit)
         {
             await depresyonManager.InsertAsync(kayit);
-            return View("Index");
+            var entity = hastaManager.GetByIdAsync(kayit.hastaId);
+            return View("/HastaIslemleri/HastaIslemleriIndex",entity);
         }
 
         public async Task<IActionResult> BarnesAkatiziTesti(int hastaId)
@@ -49,10 +54,11 @@ namespace GaziU.DrugApp.UI.Controllers
             return View();
         }
 
-        public async Task<IActionResult> BarnesAkatiziTestiKayit(BarnesAkatiziOlcegi olcek)
+        public async Task<IActionResult> BarnesAkatiziTestiKayit(BarnesAkatiziOlcegi kayit)
         {
-            await barnesManager.InsertAsync(olcek);
-            return View("Index");
+            await barnesManager.InsertAsync(kayit);
+            var entity = hastaManager.GetByIdAsync(kayit.hastaId);
+            return View("/HastaIslemleri/HastaIslemleriIndex",entity);
         }
     }
 }

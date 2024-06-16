@@ -121,7 +121,7 @@ namespace GaziU.DrugApp.UI.Controllers
             return View(kayitlar);
         }
 
-        public async Task<IActionResult> BeckDeprestyonTestler(int id)
+        public async Task<IActionResult> BeckDepresyonTestler(int id)
         {
 
             if (id == 0)

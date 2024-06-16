@@ -1,5 +1,5 @@
 ﻿@using GaziU.DrugApp.DAL.Models
-@model IEnumerable<Hasta>
+@model DoktorIndexToMuayeneModel
 
 <!DOCTYPE html>
 <html lang="en">
@@ -46,14 +46,14 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var hasta in Model)
+                @foreach (var hasta in Model.hastalar)
                 {
                     <tr>
                         <th scope="row">@hasta.Id</th>
                         <td>@hasta.Name</td>
                         <td>@hasta.DogumTarihi</td>
                         <td>
-                            <a href="@Url.Action("MuayeneEt", "Doktor", new { hastaId = hasta.Id })" class="btn btn-primary">Muayene Et</a>
+                            <a asp-action="HastaMuayene" asp-route-hastaId="@hasta.Id" asp-route-doktorId="@Model.doktor.Id" class="btn btn-primary">Muayene Et</a>
                         </td>
                     </tr>
                 }

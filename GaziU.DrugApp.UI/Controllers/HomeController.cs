@@ -43,7 +43,7 @@ namespace GaziU.DrugApp.UI.Controllers
             Doktor entity = doktorRepository.DoktorVarMi(doktor);
             if (entity != null)
             {
-                return RedirectToAction("DoktorIslemleriIndex", "Doktor", entity);
+                return RedirectToAction("Index", "Doktor", entity);
             }
             else
             {

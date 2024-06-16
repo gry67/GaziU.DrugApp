@@ -1,4 +1,5 @@
 ﻿@using GaziU.DrugApp.DAL.Models
+@model DoktorMuayeneKaydi
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
@@ -37,13 +38,15 @@
         <!-- Ana İçerik Bölümü -->
         <div class="col-md-9">
             <h2 class="mb-4">Hasta Muayene Notları</h2>
-            <form method="post" action="@Url.Action("HastaMuayeneKayitEkle","Doktor")">
-                <input type="hidden" name="HastaId" value="@ViewBag.hastaId" />
-                <input type="hidden" name="CreatedDate" value="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss")" />
+            <form method="post" asp-action="HastaMuayeneKayitEkle" asp-controller="Doktor">
+               
+                <input type="hidden"  value="@ViewBag.hastaId" />
+                <input type="hidden" asp-for="DoktorId" value="@ViewBag.doktorId" />
+                <input type="hidden" asp-for="CreatedDate" value="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss")" />
 
                 <div class="mb-3">
-                    <label for="muayeneNotlari" class="form-label">Muayene Notları</label>
-                    <textarea class="form-control" id="muayeneNotlari" name="MuayeneNotlari" rows="6"></textarea>
+                    <label asp-for="MuayeneNotlari" class="form-label">Muayene Notları</label>
+                    <textarea class="form-control" asp-for="MuayeneNotlari" rows="6"></textarea>
                 </div>
 
                 <button type="submit" class="btn btn-primary">Kaydet</button>

@@ -15,7 +15,8 @@ namespace GaziU.DrugApp.DAL.Models
         public ICollection<Drug> HastaDrugs { get; set; }
 
         public Doktor Doktor { get; set; }
-        public int DoktorId { get; set; } 
+        public int DoktorId { get; set; }
+        public ICollection<DoktorMuayeneKaydi> DoktorMuayeneKayitlari { get; set; }
     }
 
 }

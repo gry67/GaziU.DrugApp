@@ -21,7 +21,9 @@ namespace GaziU.DrugApp.DAL
             optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=DrugManagementApp;Integrated Security=True;");
         }
 
-        public DbSet<BarnesAkatiziOlcegi> BeckAnksiyeteKayitlari { get; set; }
+        public DbSet<BarnesAkatiziOlcegi> BarnesAkatiziKayitlari { get; set; }
+        public DbSet<BeckAnksiyeteOlcegiKayit> BeckAnksiyeteKayitlari { get; set; }
+        public DbSet<BeckDepresyonOlcegiKayit> BeckDepresyonKayitlari { get; set; }
         public DbSet<ActiveIngredient> ActiveIngredients { get; set; }
         public DbSet<Drug> Drugs { get; set; }
         public DbSet<MedicineType> MedicineTypes { get; set;}
@@ -29,6 +31,8 @@ namespace GaziU.DrugApp.DAL
         public DbSet<Doktor> Doktorlar{ get; set;}
         public DbSet<DoktorMuayeneKaydi> doktorMuayeneKayitlari{ get; set;}
         public DbSet<HastaIlacKayit> HastaIlacKayitlari{ get; set;}
+
+
 
     }
 }

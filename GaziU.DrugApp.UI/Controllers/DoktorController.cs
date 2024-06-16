@@ -1,5 +1,6 @@
 ﻿using GaziU.DrugApp.BL.Abstract;
 using GaziU.DrugApp.DAL.Models;
+using GaziU.DrugApp.UI.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GaziU.DrugApp.UI.Controllers
@@ -8,23 +9,31 @@ namespace GaziU.DrugApp.UI.Controllers
     {
         private readonly IGenericManager<Hasta> hastaManager;
         private readonly IGenericManager<DoktorMuayeneKaydi> muayeneManager;
-        public IActionResult Index(Doktor doktor)
-        {
-            var entities = hastaManager.GetAll(h=>h.DoktorId == doktor.Id);
 
-            return View(entities);
+        public DoktorController(IGenericManager<Hasta> hastaManager, IGenericManager<DoktorMuayeneKaydi> muayeneManager)
+        {
+            this.hastaManager = hastaManager;
+            this.muayeneManager = muayeneManager;
         }
 
-        public IActionResult HastaMuayene(int id)
+        public async Task<IActionResult> Index(Doktor doktor)
         {
-            ViewBag.hastaId = id;
+            var entities = await hastaManager.GetAll(h=>h.DoktorId == doktor.Id);
+
+            return View("DoktorIslemleriIndex",new DoktorIndexToMuayeneModel { doktor=doktor,hastalar=entities});
+        }
+
+        public IActionResult HastaMuayene(int hastaId,int doktorId)
+        {
+            ViewBag.DoktorId = doktorId;
+            ViewBag.hastaId = hastaId;
             return View();
         }
 
         public async Task<IActionResult> HastaMuayeneKayitEkle(DoktorMuayeneKaydi kayit)
         {
             await muayeneManager.InsertAsync(kayit);
-            return View();
+            return RedirectToAction("Index");
         }
 
 
