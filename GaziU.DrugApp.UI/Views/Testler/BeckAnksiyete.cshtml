@@ -1,0 +1,297 @@
+﻿@using GaziU.DrugApp.DAL.Models
+@model BarnesAkatiziOlcegi
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beck Anksiyete Ölçeği</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">Psikiyatrik Tedavi Takip Sistemi</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Anasayfa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Hakkımızda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">İletişim</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Çıkış Yap</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <!-- Beck Anksiyete Ölçeği Formu -->
+    <div class="container mt-5">
+        <h2 class="text-center">Beck Anksiyete Ölçeği</h2>
+        <form method="post" action="@Url.Action("BeckAnksiyeteKayit", "Testler")">
+            <input name="hastaId" asp-for="hastaId" type="hidden" value="@ViewBag.hastaId" />
+            <div class="mb-3">
+                <label class="form-label">1 - Bedeninin herhangi bir yerinde uyuşma veya karıncalanma</label><br>
+                <select class="form-select" name="Soru1Puan" required>
+                    <option value="">Seçiniz</option>
+                    <option value="0">Hiç Hissetmedim</option>
+                    <option value="1">Hafif Düzeyde - Beni Pek Etkilemedi</option>
+                    <option value="2">Orta Düzeyde - Hoş değildi ama katlanılabilirdi</option>
+                    <option value="3">Ciddi Düzeyde - Dayanmakta çok zorlandım</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">2 - Sıcak / Ateş Basması</label><br>
+                <select class="form-select" name="Soru2Puan" required>
+                    <option value="">Seçiniz</option>
+                    <option value="0">Hiç Hissetmedim</option>
+                    <option value="1">Hafif Düzeyde - Beni Pek Etkilemedi</option>
+                    <option value="2">Orta Düzeyde - Hoş değildi ama katlanılabilirdi</option>
+                    <option value="3">Ciddi Düzeyde - Dayanmakta çok zorlandım</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">3 - Bacaklarda titreme</label><br>
+                <select class="form-select" name="Soru3Puan" required>
+                    <option value="">Seçiniz</option>
+                    <option value="0">Hiç Hissetmedim</option>
+                    <option value="1">Hafif Düzeyde - Beni Pek Etkilemedi</option>
+                    <option value="2">Orta Düzeyde - Hoş değildi ama katlanılabilirdi</option>
+                    <option value="3">Ciddi Düzeyde - Dayanmakta çok zorlandım</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">4 - Gevşeyememe</label><br>
+                <select class="form-select" name="Soru4Puan" required>
+                    <option value="">Seçiniz</option>
+                    <option value="0">Hiç Hissetmedim</option>
+                    <option value="1">Hafif Düzeyde - Beni Pek Etkilemedi</option>
+                    <option value="2">Orta Düzeyde - Hoş değildi ama katlanılabilirdi</option>
+                    <option value="3">Ciddi Düzeyde - Dayanmakta çok zorlandım</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">5 - En kötü şeylerin başına geleceği korkusu</label><br>
+                <select class="form-select" name="Soru5Puan" required>
+                    <option value="">Seçiniz</option>
+                    <option value="0">Hiç Hissetmedim</option>
+                    <option value="1">Hafif Düzeyde - Beni Pek Etkilemedi</option>
+                    <option value="2">Orta Düzeyde - Hoş değildi ama katlanılabilirdi</option>
+                    <option value="3">Ciddi Düzeyde - Dayanmakta çok zorlandım</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">6 - Baş dönmesi veya sersemlik</label><br>
+                <select class="form-select" name="Soru6Puan" required>
+                    <option value="">Seçiniz</option>
+                    <option value="0">Hiç Hissetmedim</option>
+                    <option value="1">Hafif Düzeyde - Beni Pek Etkilemedi</option>
+                    <option value="2">Orta Düzeyde - Hoş değildi ama katlanılabilirdi</option>
+                    <option value="3">Ciddi Düzeyde - Dayanmakta çok zorlandım</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">7 - Kalp çarpıntısı</label><br>
+                <select class="form-select" name="Soru7Puan" required>
+                    <option value="">Seçiniz</option>
+                    <option value="0">Hiç Hissetmedim</option>
+                    <option value="1">Hafif Düzeyde - Beni Pek Etkilemedi</option>
+                    <option value="2">Orta Düzeyde - Hoş değildi ama katlanılabilirdi</option>
+                    <option value="3">Ciddi Düzeyde - Dayanmakta çok zorlandım</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">8 - Denge kaybı</label><br>
+                <select class="form-select" name="Soru8Puan" required>
+                    <option value="">Seçiniz</option>
+                    <option value="0">Hiç Hissetmedim</option>
+                    <option value="1">Hafif Düzeyde - Beni Pek Etkilemedi</option>
+                    <option value="2">Orta Düzeyde - Hoş değildi ama katlanılabilirdi</option>
+                    <option value="3">Ciddi Düzeyde - Dayanmakta çok zorlandım</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">9 - Dehşete kapılma ya da korkma</label><br>
+                <select class="form-select" name="Soru9Puan" required>
+                    <option value="">Seçiniz</option>
+                    <option value="0">Hiç Hissetmedim</option>
+                    <option value="1">Hafif Düzeyde - Beni Pek Etkilemedi</option>
+                    <option value="2">Orta Düzeyde - Hoş değildi ama katlanılabilirdi</option>
+                    <option value="3">Ciddi Düzeyde - Dayanmakta çok zorlandım</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">10 - Sinirlilik</label><br>
+                <select class="form-select" name="Soru10Puan" required>
+                    <option value="">Seçiniz</option>
+                    <option value="0">Hiç Hissetmedim</option>
+                    <option value="1">Hafif Düzeyde - Beni Pek Etkilemedi</option>
+                    <option value="2">Orta Düzeyde - Hoş değildi ama katlanılabilirdi</option>
+                    <option value="3">Ciddi Düzeyde - Dayanmakta çok zorlandım</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">11 - Boğuluyormuş gibi hissetme</label><br>
+                <select class="form-select" name="Soru11Puan" required>
+                    <option value="">Seçiniz</option>
+                    <option value="0">Hiç Hissetmedim</option>
+                    <option value="1">Hafif Düzeyde - Beni Pek Etkilemedi</option>
+                    <option value="2">Orta Düzeyde - Hoş değildi ama katlanılabilirdi</option>
+                    <option value="3">Ciddi Düzeyde - Dayanmakta çok zorlandım</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">12 - Ellerinde titreme</label><br>
+                <select class="form-select" name="Soru12Puan" required>
+                    <option value="">Seçiniz</option>
+                    <option value="0">Hiç Hissetmedim</option>
+                    <option value="1">Hafif Düzeyde - Beni Pek Etkilemedi</option>
+                    <option value="2">Orta Düzeyde - Hoş değildi ama katlanılabilirdi</option>
+                    <option value="3">Ciddi Düzeyde - Dayanmakta çok zorlandım</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">13 - Titreklik</label><br>
+                <select class="form-select" name="Soru13Puan" required>
+                    <option value="">Seçiniz</option>
+                    <option value="0">Hiç Hissetmedim</option>
+                    <option value="1">Hafif Düzeyde - Beni Pek Etkilemedi</option>
+                    <option value="2">Orta Düzeyde - Hoş değildi ama katlanılabilirdi</option>
+                    <option value="3">Ciddi Düzeyde - Dayanmakta çok zorlandım</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">14 - Kontrolü kaybetme korkusu</label><br>
+                <select class="form-select" name="Soru14Puan" required>
+                    <option value="">Seçiniz</option>
+                    <option value="0">Hiç Hissetmedim</option>
+                    <option value="1">Hafif Düzeyde - Beni Pek Etkilemedi</option>
+                    <option value="2">Orta Düzeyde - Hoş değildi ama katlanılabilirdi</option>
+                    <option value="3">Ciddi Düzeyde - Dayanmakta çok zorlandım</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">15 - Nefes almakta zorlanma</label><br>
+                <select class="form-select" name="Soru15Puan" required>
+                    <option value="">Seçiniz</option>
+                    <option value="0">Hiç Hissetmedim</option>
+                    <option value="1">Hafif Düzeyde - Beni Pek Etkilemedi</option>
+                    <option value="2">Orta Düzeyde - Hoş değildi ama katlanılabilirdi</option>
+                    <option value="3">Ciddi Düzeyde - Dayanmakta çok zorlandım</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">16 - Ölüm korkusu</label><br>
+                <select class="form-select" name="Soru16Puan" required>
+                    <option value="">Seçiniz</option>
+                    <option value="0">Hiç Hissetmedim</option>
+                    <option value="1">Hafif Düzeyde - Beni Pek Etkilemedi</option>
+                    <option value="2">Orta Düzeyde - Hoş değildi ama katlanılabilirdi</option>
+                    <option value="3">Ciddi Düzeyde - Dayanmakta çok zorlandım</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">17 - Korkuya kapılma</label><br>
+                <select class="form-select" name="Soru17Puan" required>
+                    <option value="">Seçiniz</option>
+                    <option value="0">Hiç Hissetmedim</option>
+                    <option value="1">Hafif Düzeyde - Beni Pek Etkilemedi</option>
+                    <option value="2">Orta Düzeyde - Hoş değildi ama katlanılabilirdi</option>
+                    <option value="3">Ciddi Düzeyde - Dayanmakta çok zorlandım</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">18 - Midede hazımsızlık</label><br>
+                <select class="form-select" name="Soru18Puan" required>
+                    <option value="">Seçiniz</option>
+                    <option value="0">Hiç Hissetmedim</option>
+                    <option value="1">Hafif Düzeyde - Beni Pek Etkilemedi</option>
+                    <option value="2">Orta Düzeyde - Hoş değildi ama katlanılabilirdi</option>
+                    <option value="3">Ciddi Düzeyde - Dayanmakta çok zorlandım</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">19 - Bayılma ya da baygınlık</label><br>
+                <select class="form-select" name="Soru19Puan" required>
+                    <option value="">Seçiniz</option>
+                    <option value="0">Hiç Hissetmedim</option>
+                    <option value="1">Hafif Düzeyde - Beni Pek Etkilemedi</option>
+                    <option value="2">Orta Düzeyde - Hoş değildi ama katlanılabilirdi</option>
+                    <option value="3">Ciddi Düzeyde - Dayanmakta çok zorlandım</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">20 - Yüz kızarması</label><br>
+                <select class="form-select" name="Soru20Puan" required>
+                    <option value="">Seçiniz</option>
+                    <option value="0">Hiç Hissetmedim</option>
+                    <option value="1">Hafif Düzeyde - Beni Pek Etkilemedi</option>
+                    <option value="2">Orta Düzeyde - Hoş değildi ama katlanılabilirdi</option>
+                    <option value="3">Ciddi Düzeyde - Dayanmakta çok zorlandım</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">21 - Soğuk ya da sıcak terlemeler</label><br>
+                <select class="form-select" name="Soru21Puan" required>
+                    <option value="">Seçiniz</option>
+                    <option value="0">Hiç Hissetmedim</option>
+                    <option value="1">Hafif Düzeyde - Beni Pek Etkilemedi</option>
+                    <option value="2">Orta Düzeyde - Hoş değildi ama katlanılabilirdi</option>
+                    <option value="3">Ciddi Düzeyde - Dayanmakta çok zorlandım</option>
+                </select>
+            </div>
+            <input type="hidden" name="ToplamPuan" value="" />
+            <button type="submit" class="btn btn-primary">Ölçeği Gönder</button>
+        </form>
+    </div>
+
+    <p>@ViewBag.hastaId</p>
+    <br />
+    <br />
+    <br />
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.querySelector('form');
+
+            form.addEventListener('submit', function (event) {
+                event.preventDefault(); // Sayfa yenilemesini önlemek için form submit olayını durdur
+
+                let totalScore = 0;
+
+                // Her bir soru için seçilen değeri al
+                for (let i = 1; i <= 21; i++) {
+                    const selectElement = document.querySelector(`select[name="Soru${i}Puan"]`);
+                    const selectedValue = parseInt(selectElement.value); // Seçilen değeri integer'a çevir
+
+                    totalScore += selectedValue; // Toplam puanı güncelle
+                }
+
+                // Toplam puanı "ToplamPuan" adlı inputun value'sine ata
+                const toplamPuanInput = document.querySelector('input[name="ToplamPuan"]');
+                toplamPuanInput.value = totalScore;
+
+                form.submit();
+            });
+        });
+    </script>
+
+</body>
+</html>
+
+

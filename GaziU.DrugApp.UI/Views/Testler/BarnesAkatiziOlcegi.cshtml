@@ -1,0 +1,187 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barnes Akatizi Ölçeği</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">Psikiyatrik Tedavi Takip Sistemi</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Anasayfa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Hakkımızda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">İletişim</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Çıkış Yap</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Barnes Akatizi Ölçeği Formu -->
+    <div class="container mt-5">
+        <h2 class="text-center">Barnes Akatizi Ölçeği</h2>
+        <form id="barnesForm">
+            <!-- Sorular ve puanlama seçenekleri -->
+            <div class="mb-3">
+                <label class="form-label">1 - Hareket etme isteksizliği (kol ve bacaklarda)</label><br>
+                <select class="form-select" name="Soru1Puan" required>
+                    <option value="">Seçiniz</option>
+                    <option value="0">Hiç yok</option>
+                    <option value="1">Hafif derecede var</option>
+                    <option value="2">Orta derecede var</option>
+                    <option value="3">Şiddetli var</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">2 - Hareketlerin zor olması</label><br>
+                <select class="form-select" name="Soru2Puan" required>
+                    <option value="">Seçiniz</option>
+                    <option value="0">Hiç yok</option>
+                    <option value="1">Hafif derecede var</option>
+                    <option value="2">Orta derecede var</option>
+                    <option value="3">Şiddetli var</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">3 - Hareketlerde durgunluk</label><br>
+                <select class="form-select" name="Soru3Puan" required>
+                    <option value="">Seçiniz</option>
+                    <option value="0">Hiç yok</option>
+                    <option value="1">Hafif derecede var</option>
+                    <option value="2">Orta derecede var</option>
+                    <option value="3">Şiddetli var</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">4 - Ayakta durma sırasında sallanma</label><br>
+                <select class="form-select" name="Soru4Puan" required>
+                    <option value="">Seçiniz</option>
+                    <option value="0">Hiç yok</option>
+                    <option value="1">Hafif derecede var</option>
+                    <option value="2">Orta derecede var</option>
+                    <option value="3">Şiddetli var</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">5 - Hareketlerde titreme</label><br>
+                <select class="form-select" name="Soru5Puan" required>
+                    <option value="">Seçiniz</option>
+                    <option value="0">Hiç yok</option>
+                    <option value="1">Hafif derecede var</option>
+                    <option value="2">Orta derecede var</option>
+                    <option value="3">Şiddetli var</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">6 - Hareketlerin sırasında sıçrama</label><br>
+                <select class="form-select" name="Soru6Puan" required>
+                    <option value="">Seçiniz</option>
+                    <option value="0">Hiç yok</option>
+                    <option value="1">Hafif derecede var</option>
+                    <option value="2">Orta derecede var</option>
+                    <option value="3">Şiddetli var</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">7 - Hareketlerde huzursuzluk</label><br>
+                <select class="form-select" name="Soru7Puan" required>
+                    <option value="">Seçiniz</option>
+                    <option value="0">Hiç yok</option>
+                    <option value="1">Hafif derecede var</option>
+                    <option value="2">Orta derecede var</option>
+                    <option value="3">Şiddetli var</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">8 - Hareketlerde zorlama</label><br>
+                <select class="form-select" name="Soru8Puan" required>
+                    <option value="">Seçiniz</option>
+                    <option value="0">Hiç yok</option>
+                    <option value="1">Hafif derecede var</option>
+                    <option value="2">Orta derecede var</option>
+                    <option value="3">Şiddetli var</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">9 - Ayakta durma sırasında ileri geri hareket etme</label><br>
+                <select class="form-select" name="Soru9Puan" required>
+                    <option value="">Seçiniz</option>
+                    <option value="0">Hiç yok</option>
+                    <option value="1">Hafif derecede var</option>
+                    <option value="2">Orta derecede var</option>
+                    <option value="3">Şiddetli var</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">10 - Hareketlerde düzensizlik</label><br>
+                <select class="form-select" name="Soru10Puan" required>
+                    <option value="">Seçiniz</option>
+                    <option value="0">Hiç yok</option>
+                    <option value="1">Hafif derecede var</option>
+                    <option value="2">Orta derecede var</option>
+                    <option value="3">Şiddetli var</option>
+                </select>
+            </div>
+
+            <div class="text-center">
+                <button type="button" class="btn btn-primary" onclick="hesaplaToplamPuan()">Toplam Puanı Hesapla</button>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Toplam Puan</label>
+                <input type="text" class="form-control" name="ToplamPuan" readonly>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.querySelector('form');
+
+            form.addEventListener('submit', function (event) {
+                event.preventDefault(); 
+
+                let totalScore = 0;
+
+              
+                for (let i = 1; i <= 21; i++) {
+                    const selectElement = document.querySelector(`select[name="Soru${i}Puan"]`);
+                    const selectedValue = parseInt(selectElement.value); 
+
+                    totalScore += selectedValue; 
+                }
+
+                
+                const toplamPuanInput = document.querySelector('input[name="ToplamPuan"]');
+                toplamPuanInput.value = totalScore;
+
+                form.submit();
+            });
+        });
+    </script>
+</body>
+</html>

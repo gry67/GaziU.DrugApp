@@ -1,0 +1,67 @@
+﻿@using GaziU.DrugApp.DAL.Models
+@model List<BarnesAkatiziOlcegi>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="#">Psikiyatrik Tedavi Takip Sistemi</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Testler" asp-action="BeckAnksiyete" asp-route-hastaId="@ViewBag.hastaId">Beck Anksiyete Ölçeği</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Testler" asp-action="BeckDepresyon" asp-route-hastaId="@ViewBag.hastaId">Beck Depresyon Ölçeği</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Testler" asp-action="BarnesAkatiziTesti" asp-route-hastaId="@ViewBag.hastaId">Barnes Akatizi Ölçeği</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Hakkımızda</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">İletişim</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Home" asp-action="Index">Çıkış Yap</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="list-group">
+                <a asp-controller="HastaIslemleri" asp-action="HastaIslemleriIndexById" asp-route-hastaId="@ViewBag.hastaId" class="list-group-item list-group-item-action">İlaç Ekle</a>
+                <a asp-controller="HastaIslemleri" asp-action="KullandigiIlaclarById" asp-route-hastaId="@ViewBag.hastaId" class="list-group-item list-group-item-action">Hastanın Kullandığı İlaçlar</a>
+                <a asp-controller="HastaIslemleri" asp-action="YapilanTestler" asp-route-id="@ViewBag.hastaId" class="list-group-item list-group-item-action">Hastanın Yaptığı Beck Anksiyete Ölçekleri</a>
+                <a asp-controller="HastaIslemleri" asp-action="BeckDepresyon" asp-route-id="@ViewBag.hastaId" class="list-group-item list-group-item-action">Hastanın Yaptığı Beck Depresyon Ölçekleri</a>
+                <a asp-controller="HastaIslemleri" asp-action="BeckDepresyon" asp-route-id="@ViewBag.hastaId" class="list-group-item list-group-item-action">Hastanın Yaptığı Beck Depresyon Ölçekleri</a>
+
+            </div>
+        </div>
+        <div class="col-md-9">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Test Puanı</th>
+                        <th>Test Tarihi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var kayit in Model)
+                    {
+                        <tr>
+                            <td>@kayit.ToplamPuan</td>
+                            <td>@kayit.CreatedDate</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,295 @@
+﻿@using GaziU.DrugApp.DAL.Models
+@model BeckDepresyonOlcegiKayit
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">Psikiyatrik Tedavi Takip Sistemi</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Anasayfa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Hakkımızda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">İletişim</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Çıkış Yap</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Beck Depresyon Ölçeği Formu -->
+    <div class="container mt-5">
+        <h2 class="text-center">Beck Depresyon Ölçeği</h2>
+        <form method="post"  action="@Url.Action("BeckDepresyonKayit", "Testler")">
+        <input name="hastaId"  type="hidden" value="@ViewBag.hastaId" />
+            
+            <div class="mb-3">
+                <label class="form-label">1 - Üzgün hissetme</label><br>
+                <select class="form-select" name="Soru1Puan" required>
+                    <option value="">Seçiniz</option>
+                    <option value="0">Kendimi üzgün hissetmiyorum.</option>
+                    <option value="1">Kendimi hafif düzeyde üzgün hissediyorum.</option>
+                    <option value="2">Kendimi sürekli üzgün hissediyorum ve bundan kurtulamıyorum.</option>
+                    <option value="3">O kadar üzgün ve mutsuzum ki artık katlanamıyorum.</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">2 - Geleceğe dair umutsuzluk</label><br>
+                <select class="form-select" name="Soru2Puan" required>
+                    <option value="">Seçiniz</option>
+                    <option value="0">Geleceğe dair umutsuz değilim.</option>
+                    <option value="1">Geleceğe dair karamsarım.</option>
+                    <option value="2">Gelecekten beklediğim hiçbir şey yok.</option>
+                    <option value="3">Geleceğim hakkında umutsuzum ve hiçbir şey yoluna girmeyecekmiş gibi geliyor.</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">3 - Başarısızlık hissi</label><br>
+                <select class="form-select" name="Soru3Puan" required>
+                    <option value="">Seçiniz</option>
+                    <option value="0">Kendimi başarısız biri olarak tanımlamam.</option>
+                    <option value="1">Kendimi ortalama bir insandan daha başarısız biri olarak tanımlarım.</option>
+                    <option value="2">Geçmişim başarısızlıklarla doluymuş gibi hissediyorum.</option>
+                    <option value="3">Tümüyle başarısız biri olduğumu düşünüyorum.</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">4 - Zevk alamama</label><br>
+                <select class="form-select" name="Soru4Puan" required>
+                    <option value="">Seçiniz</option>
+                    <option value="0">Her şeyden eskisi kadar zevk alabiliyorum.</option>
+                    <option value="1">Birçok şeyden eskisi kadar keyif alamıyorum.</option>
+                    <option value="2">Artık hiçbir şey bana keyif vermiyor.</option>
+                    <option value="3">Her şeyden sıkılıyorum ve hiçbir şeyden memnun değilim.</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">5 - Suçluluk hissi</label><br>
+                <select class="form-select" name="Soru5Puan" required>
+                    <option value="">Seçiniz</option>
+                    <option value="0">Kendimi herhangi bir şekilde suçlu hissetmiyorum.</option>
+                    <option value="1">Kendimi zaman zaman suçlu hissediyorum.</option>
+                    <option value="2">Kendimi çoğu zaman oldukça suçlu hissediyorum.</option>
+                    <option value="3">Kendimi her zaman oldukça suçlu hissediyorum.</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">6 - Cezalandırılma hissi</label><br>
+                <select class="form-select" name="Soru6Puan" required>
+                    <option value="">Seçiniz</option>
+                    <option value="0">Cezalandırıldığımı düşünmüyorum.</option>
+                    <option value="1">Cezalandırılabileceğimi hissediyorum.</option>
+                    <option value="2">Cezalandırılmayı bekliyorum.</option>
+                    <option value="3">Cezalandırıldığımı düşünüyorum.</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">7 - Kendi görünüşümden memnuniyetsizlik</label><br>
+                <select class="form-select" name="Soru7Puan" required>
+                    <option value="">Seçiniz</option>
+                    <option value="0">Kendimden memnunum.</option>
+                    <option value="1">Kendimden pek memnun değilim.</option>
+                    <option value="2">Kendimden tiksiniyorum.</option>
+                    <option value="3">Kendimden nefret ediyorum.</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">8 - Başkalarıyla kıyaslanma</label><br>
+                <select class="form-select" name="Soru8Puan" required>
+                    <option value="">Seçiniz</option>
+                    <option value="0">Başkalarından daha kötü olduğumu düşünmüyorum.</option>
+                    <option value="1">Hatalarım ve zayıflıklarım için kendimi eleştiririm.</option>
+                    <option value="2">Hatalarım için her zaman kendimi suçlarım.</option>
+                    <option value="3">Başıma gelen her kötü şey için kendimi suçlarım.</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">9 - İntihar düşüncesi</label><br>
+                <select class="form-select" name="Soru9Puan" required>
+                    <option value="">Seçiniz</option>
+                    <option value="0">Kendimi öldürmek gibi bir düşüncem yok.</option>
+                    <option value="1">Kimi zaman kendimi öldürmeyi düşündüğüm oluyor, ama bunu yapmayacağım.</option>
+                <option value="2">Kendimi öldürmek isterdim.</option>
+                <option value="3">Fırsatını bulsaydım kendimi öldürürdüm.</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">10 - Ağlama isteği</label><br>
+            <select class="form-select" name="Soru10Puan" required>
+                <option value="">Seçiniz</option>
+                <option value="0">Normalden daha fazla ağlama isteğim bulunmuyor.</option>
+                <option value="1">Artık eskisinden daha çok ağlıyorum.</option>
+                <option value="2">Sürekli ağlıyorum.</option>
+                <option value="3">Eskiden ağlayabilirdim ama şimdi içimden ağlamak gelse de ağlayamıyorum.</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">11 - Sinirlilik</label><br>
+            <select class="form-select" name="Soru11Puan" required>
+                <option value="">Seçiniz</option>
+                <option value="0">Her zamankinden daha fazla sinirlenmiyorum.</option>
+                <option value="1">Her zamankinden biraz daha sinirliyim.</option>
+                <option value="2">Çoğu zaman oldukça sinirliyim.</option>
+                <option value="3">Her zaman çok sinirliyim.</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">12 - İnsanlara ilgi kaybı</label><br>
+            <select class="form-select" name="Soru12Puan" required>
+                <option value="">Seçiniz</option>
+                <option value="0">İnsanlara duyduğum ilgide bir değişiklik yok.</option>
+                <option value="1">İnsanlarla eskisinden daha az ilgileniyorum.</option>
+                <option value="2">İnsanlara duyduğum ilgiyi büyük ölçüde kaybettim.</option>
+                <option value="3">İnsanlara karşı tüm ilgimi kaybettim.</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">13 - Karar vermede güçlük çekme</label><br>
+            <select class="form-select" name="Soru13Puan" required>
+                <option value="">Seçiniz</option>
+                <option value="0">Karar verirken güçlük çekmiyorum.</option>
+                <option value="1">Eskiden olduğu kadar kolay karar veremiyorum.</option>
+                <option value="2">Karar verme konusunda eskiye göre daha fazla güçlük çekiyorum.</option>
+                <option value="3">Artık hiçbir konuda karar veremiyorum.</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">14 - Vücut görünümüyle ilgili endişe</label><br>
+            <select class="form-select" name="Soru14Puan" required>
+                <option value="">Seçiniz</option>
+                <option value="0">Eskisinden daha kötü göründüğümü düşünmüyorum.</option>
+                <option value="1">Eskiye kıyasla yaşlı ve çirkin göründüğümden endişe ediyorum.</option>
+                <option value="2">Görünüşümde yaşlı ve çirkin görünmeme neden olan kalıcı değişiklikler olduğunu hissediyorum.</option>
+                <option value="3">Kendimi çok çirkin buluyorum.</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">15 - İşlevsellik azalması</label><br>
+            <select class="form-select" name="Soru15Puan" required>
+                <option value="">Seçiniz</option>
+                <option value="0">Eskisi kadar iyi iş yapabiliyorum.</option>
+                <option value="1">Her zaman yaptığım işler şimdilerde fazladan efor gerektiriyor.</option>
+                <option value="2">Ufak bir işi bile kendimi çok zorlayarak yapabiliyorum.</option>
+                <option value="3">Artık hiçbir iş yapamıyorum.</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">16 - Uyku düzeninde değişiklik</label><br>
+            <select class="form-select" name="Soru16Puan" required>
+                <option value="">Seçiniz</option>
+                <option value="0">Uyku düzenimde eskiye kıyasla bir değişiklik yok.</option>
+                <option value="1">Eskisi gibi uyuyamıyorum.</option>
+                <option value="2">Eskisine göre 1-2 saat erken uyanıyorum ve tekrar uykuya dalmakta zorlanıyorum.</option>
+                <option value="3">Eskisine göre çok erken uyanıyorum ve bir daha uyuyamıyorum.</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">17 - Sürekli yorgunluk</label><br>
+            <select class="form-select" name="Soru17Puan" required>
+                <option value="">Seçiniz</option>
+                <option value="0">Her zamankinden daha çabuk yorulmuyorum.</option>
+                <option value="1">Her zamankine kıyasla daha çabuk yoruluyorum.</option>
+                <option value="2">Yaptığım her şeyde yorgunluk hissediyorum.</option>
+                <option value="3">Kendimi neredeyse hiçbir şey yapamayacak kadar yorgun hissediyorum.</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">18 - İştah değişikliği</label><br>
+            <select class="form-select" name="Soru18Puan" required>
+                <option value="">Seçiniz</option>
+                <option value="0">İştahımda bir değişiklik yok.</option>
+                <option value="1">İştahım her zamanki kadar iyi değil.</option>
+                <option value="2">Son zamanlarda iştahım çok azaldı.</option>
+                <option value="3">Artık hiç iştahım yok, hiçbir şey yiyemiyorum.</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">19 - Ani kilo değişiklikleri</label><br>
+            <select class="form-select" name="Soru19Puan" required>
+                <option value="">Seçiniz</option>
+                <option value="0">Son zamanlarda kilo vermedim.</option>
+                <option value="1">Zayıflamaya çalışmadığım halde en az 2 kilo kaybettim.</option>
+                <option value="2">Zayıflamaya çalışmadığım halde en az 4 kilo kaybettim.</option>
+                <option value="3">Zayıflamaya çalışmadığım halde en az 6 kilo kaybettim.</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">20 - Sağlık endişesi</label><br>
+            <select class="form-select" name="Soru20Puan" required>
+                <option value="">Seçiniz</option>
+                <option value="0">Sağlığım hakkında fazla endişem yok.</option>
+                <option value="1">Ağrı, sancı, mide bozukluğu veya kabızlık gibi rahatsızlıklar beni endişelendiriyor.</option>
+                <option value="2">Sağlığımın bozulmasından endişeleniyorum ve bu sebeple kafamı başka şeylere vermekte zorlanıyorum.</option>
+                <option value="3">Sağlığım hakkında o kadar endişeliyim ki başka bir şey düşünemiyorum.</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">21 - Kaygılanma</label><br>
+            <select class="form-select" name="Soru21Puan" required>
+                <option value="">Seçiniz</option>
+                <option value="0">Eskiden olduğu gibi kaygılanmıyorum.</option>
+                <option value="1">Normalden daha fazla kaygılanıyorum.</option>
+                <option value="2">Başkalarının benim hakkımda düşüneceği şeyler beni sürekli kaygılandırıyor.</option>
+                <option value="3">Kafamda her an her şey hakkında olumsuz düşünceler dönüyor ve bu düşünceleri durduramıyorum.</option>
+            </select>
+        </div>
+        <input />
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">Formu Gönder</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.querySelector('form');
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault(); // Sayfa yenilemesini önlemek için form submit olayını durdur
+
+            let totalScore = 0;
+
+            // Her bir soru için seçilen değeri al
+            for (let i = 1; i <= 21; i++) {
+                const selectElement = document.querySelector(`select[name="Soru${i}Puan"]`);
+                const selectedValue = parseInt(selectElement.value); // Seçilen değeri integer'a çevir
+
+                totalScore += selectedValue; // Toplam puanı güncelle
+            }
+
+            // Toplam puanı "ToplamPuan" adlı inputun value'sine ata
+            const toplamPuanInput = document.querySelector('input[name="ToplamPuan"]');
+            toplamPuanInput.value = totalScore;
+
+            form.submit();
+        });
+    });
+</script>
