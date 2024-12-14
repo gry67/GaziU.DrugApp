@@ -4,6 +4,7 @@ using GaziU.DrugApp.DAL.Models;
 using GaziU.DrugApp.UI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Identity.Client;
+using System.Security.Claims;
 
 namespace GaziU.DrugApp.UI.Controllers
 {
@@ -28,35 +29,42 @@ namespace GaziU.DrugApp.UI.Controllers
             this.barnesManager = barnesManager;
         }
 
-        public async Task<IActionResult> HastaIslemleriIndex(Hasta hasta)
+        private int FindIdByCookie()
         {
-            ViewBag.IlacListesi = await drugManager.GetAllAsync();
-            return View(hasta);
+            return Convert.ToInt32(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
         }
 
-        public async Task<IActionResult> HastaIslemleriIndexById(int hastaId)
+        public async Task<IActionResult> HastaIslemleriIndex()
         {
-            var hasta = await hastaManager.GetByIdAsync(hastaId);
+            var deneme = await hastaManager.GetByIdAsync(FindIdByCookie());
+            ViewBag.IlacListesi = await drugManager.GetAllAsync();
+            return View(deneme);
+        }
+
+        public async Task<IActionResult> HastaIslemleriIndexById()
+        {
+            var hasta = await hastaManager.GetByIdAsync(FindIdByCookie());
 
             if (hasta == null)
             {
                 return NotFound();
             }
             ViewBag.IlacListesi = await drugManager.GetAllAsync();
-            return View("HastaIslemleriIndex", hasta);
+            return View("HastaIslemleriIndex");
         }
 
         public async Task<IActionResult> Ekle(HastaIlacKayit ilacKaydi)
         {
             await manager.InsertAsync(ilacKaydi);
             var entity = await hastaManager.GetByIdAsync(ilacKaydi.HastaId);
-            return RedirectToAction("KullandigiIlaclar", entity);
+            return RedirectToAction("KullandigiIlaclar");
         }
 
-        public async Task<IActionResult> KullandigiIlaclar(Hasta hasta)
+        public async Task<IActionResult> KullandigiIlaclar()
         {
+            int hastaid = FindIdByCookie();
 
-            var ilacKayitlari = await manager.GetAll(i => i.HastaId == hasta.Id);
+            var ilacKayitlari = await manager.GetAll(i => i.HastaId == hastaid);
             if (ilacKayitlari == null)
             {
                 return NotFound("hastanın ilaç kayıtları gelmedi");
@@ -77,14 +85,17 @@ namespace GaziU.DrugApp.UI.Controllers
                     });
                 }
             }
-            ViewBag.hastaId = hasta.Id;
 
+            ViewBag.hastaId = hastaid;
+            var hasta = await hastaManager.GetByIdAsync(hastaid);
             ViewBag.IlacKayitlari = kayitlar;
             return View(hasta);
         }
 
-        public async Task<IActionResult> KullandigiIlaclarById(int hastaId)
+        public async Task<IActionResult> KullandigiIlaclarById()
         {
+            int hastaId = FindIdByCookie();
+
             if (hastaId==null)
             {
                 return NotFound("hastaId gelmedi");
@@ -93,17 +104,18 @@ namespace GaziU.DrugApp.UI.Controllers
                 return NotFound("HastaId 0 geldi");
             }
 
-            var entity = await hastaManager.GetByIdAsync(hastaId);
+            var entity = await hastaManager.GetByIdAsync(FindIdByCookie());
             if (entity==null)
             {
                 return NotFound("hasta sorgudan gelmedi"+$"{hastaId}");
             }
 
-            return RedirectToAction("KullandigiIlaclar", entity);
+            return RedirectToAction("KullandigiIlaclar");
         }
 
-        public async Task<IActionResult> YapilanTestler(int id)
+        public async Task<IActionResult> YapilanTestler()
         {
+            int id = FindIdByCookie();
             //Anksiyete testleri
             if (id == 0)
             {
@@ -123,8 +135,10 @@ namespace GaziU.DrugApp.UI.Controllers
             return View(kayitlar);
         }
 
-        public async Task<IActionResult> BeckDepresyonTestler(int id)
+        public async Task<IActionResult> BeckDepresyonTestler()
         {
+            int id = FindIdByCookie();
+
             if (id == 0)
             {
                 return NotFound("id 0 geldi");
@@ -142,8 +156,9 @@ namespace GaziU.DrugApp.UI.Controllers
             return View(kayitlar);
         }
 
-        public async Task<IActionResult> BarnesAkatiziTesleri(int id)
+        public async Task<IActionResult> BarnesAkatiziTesleri()
         {
+            int id = FindIdByCookie();
 
             if (id == 0)
             {
@@ -158,12 +173,7 @@ namespace GaziU.DrugApp.UI.Controllers
             }
 
             ViewBag.hastaId = id;
-
-
             return View(kayitlar);
         }
-
-
-
     }
 }

@@ -1,6 +1,7 @@
 ﻿using GaziU.DrugApp.DAL.Models;
 using GaziU.DrugApp.DAL.Repositories.Abstract;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace GaziU.DrugApp.UI.Controllers
 {
@@ -23,9 +24,14 @@ namespace GaziU.DrugApp.UI.Controllers
         {
             return View();
         }
-
-        public IActionResult BeckAnksiyete(int hastaId)
+        private int FindIdByCookie()
         {
+            return Convert.ToInt32(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+        }
+
+        public IActionResult BeckAnksiyete()
+        {
+            var hastaId = FindIdByCookie();
             ViewBag.hastaId = hastaId;
             return View();
         }
@@ -35,24 +41,27 @@ namespace GaziU.DrugApp.UI.Controllers
         {
             await anksiyeteManager.InsertAsync(kayit);
             var entity = hastaManager.GetByIdAsync(kayit.hastaId);
-            return RedirectToAction("HastaIslemleriIndexById", "HastaIslemleri", new { hastaId = kayit.hastaId });
+            return RedirectToAction("HastaIslemleriIndexById", "HastaIslemleri");
         }
 
-        public IActionResult BeckDepresyon(int hastaId)
+        public IActionResult BeckDepresyon()
         {
+            var hastaId = FindIdByCookie();
             ViewBag.hastaId = hastaId;
             return View();
         }
+
         [HttpPost]
         public async Task<IActionResult> BeckDepresyonKayit(BeckDepresyonOlcegiKayit kayit)
         {
             await depresyonManager.InsertAsync(kayit);
             var entity = hastaManager.GetByIdAsync(kayit.hastaId);
-            return RedirectToAction("HastaIslemleriIndexById", "HastaIslemleri", new { hastaId = kayit.hastaId });
+            return RedirectToAction("HastaIslemleriIndexById", "HastaIslemleri");
         }
 
-        public async Task<IActionResult> BarnesAkatiziTesti(int hastaId)
+        public async Task<IActionResult> BarnesAkatiziTesti()
         {
+            var hastaId = FindIdByCookie();
             ViewBag.hastaId = hastaId;
             return View();
         }
@@ -60,9 +69,10 @@ namespace GaziU.DrugApp.UI.Controllers
         [HttpPost]
         public async Task<IActionResult> BarnesAkatiziTestiKayit(BarnesAkatiziOlcegi kayit)
         {
+            var hastaId = FindIdByCookie();
             await barnesManager.InsertAsync(kayit);
-            var entity = hastaManager.GetByIdAsync(kayit.hastaId);
-            return RedirectToAction("HastaIslemleriIndexById", "HastaIslemleri", new { hastaId = kayit.hastaId });
+            var entity = hastaManager.GetByIdAsync(hastaId);
+            return RedirectToAction("HastaIslemleriIndexById", "HastaIslemleri");
         }
     }
 }

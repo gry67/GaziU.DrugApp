@@ -1,8 +1,11 @@
 ﻿using GaziU.DrugApp.DAL.Models;
 using GaziU.DrugApp.DAL.Repositories.Abstract;
 using GaziU.DrugApp.UI.Models;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Security.Claims;
 
 namespace GaziU.DrugApp.UI.Controllers
 {
@@ -28,24 +31,62 @@ namespace GaziU.DrugApp.UI.Controllers
             return View();
         }
 
+        //Login and direction
+        //Girişe mahsus hasta verisi cookie den alınmaz
         public IActionResult Hastaİslemleri(Hasta hasta)
         {
             Hasta entity = hastaRepository.HastaVarMi(hasta);
             if (entity!=null)
             {
-                return RedirectToAction("HastaIslemleriIndex", "HastaIslemleri", entity);
-            }else
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name, entity.Name),
+                    new Claim(ClaimTypes.NameIdentifier, entity.Id.ToString()),
+                    new Claim(ClaimTypes.Role, "Hasta")
+                };
+                
+                var claimsIdentity = new ClaimsIdentity(claims,CookieAuthenticationDefaults.AuthenticationScheme);
+                var authProperties = new AuthenticationProperties
+                {
+                    IsPersistent = true,
+                    IssuedUtc = DateTime.UtcNow,
+                };
+
+                HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme
+                    ,new ClaimsPrincipal(claimsIdentity),authProperties);
+
+                return RedirectToAction("HastaIslemleriIndex", "HastaIslemleri");
+            }
+            else
             {
                 return RedirectToAction("Index");
             }
         }
 
+        //Login and direction
         public IActionResult Doktorİslemleri(Doktor doktor)
         {
             Doktor entity = doktorRepository.DoktorVarMi(doktor);
             if (entity != null)
             {
-                return RedirectToAction("Index", "Doktor", entity);
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name, entity.Name),
+                    new Claim(ClaimTypes.NameIdentifier, entity.Id.ToString()),
+                    new Claim(ClaimTypes.Role, "Doktor")
+                };
+
+                var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                var authProperties = new AuthenticationProperties
+                {
+                    IsPersistent = true,
+                    IssuedUtc = DateTime.UtcNow,
+                };
+
+                HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme
+                    , new ClaimsPrincipal(claimsIdentity), authProperties);
+
+                return RedirectToAction("Index", "Doktor");
             }
             else
             {

@@ -2,6 +2,7 @@
 using GaziU.DrugApp.DAL.Models;
 using GaziU.DrugApp.UI.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace GaziU.DrugApp.UI.Controllers
 {
@@ -26,6 +27,11 @@ namespace GaziU.DrugApp.UI.Controllers
             this.muayeneManager = muayeneManager;
         }
 
+        private int FindIdByCookie()
+        {
+            return Convert.ToInt32(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+        }
+        
         public async Task<IActionResult> MuayeneKayitlarList(int hastaId)
         {
             var kayitlar = await muayeneManager.GetAll(i=>i.HastaId== hastaId);
