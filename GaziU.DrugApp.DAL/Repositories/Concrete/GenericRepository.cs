@@ -21,12 +21,22 @@ namespace GaziU.DrugApp.DAL.Repositories.Concrete
         }
 
         
-        public async Task DeleteAsync(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
             var entity = await _dbSet.FindAsync(id);
+            if (entity == null)
+            {
+                return false;
+            }
             _dbSet.Remove(entity);
-            await _context.SaveChangesAsync();
-
+            if (await _context.SaveChangesAsync() > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public async Task<IEnumerable<T>> GetAll(Expression<Func<T, bool>> expression)

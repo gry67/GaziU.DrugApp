@@ -3,6 +3,7 @@ using GaziU.DrugApp.BL;
 using GaziU.DrugApp.BL.Abstract;
 using GaziU.DrugApp.BL.Dtos;
 using GaziU.DrugApp.DAL.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,6 +11,7 @@ namespace GaziU.DrugApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class HastaController : ControllerBase
     {
         private readonly IGenericManager<Hasta> _genericManager;

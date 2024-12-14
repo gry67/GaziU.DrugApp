@@ -1,0 +1,28 @@
+﻿@using GaziU.DrugApp.DAL.Models
+@model Hasta
+
+<div class="col-md-9">
+    <div id="ilacEkle" class="mb-4">
+        <h3>İlaç Ekle</h3>
+        <hr />
+        <form method="post" action="/HastaIslemleri/Ekle">
+            <input type="hidden" name="HastaId" value="@Model.Id" /> <!-- Hasta Id'sini saklamak için gizli alan -->
+            <div class="form-group">
+                <label for="ilacId">İlaç Seçimi</label>
+                <select class="form-control" id="ilacId" name="IlacId" required>
+                    <option value="">-- İlaç Seç --</option>
+                    @foreach (var ilac in ViewBag.IlacListesi as List<Drug>)
+                    {
+                        <option value="@ilac.Id">@ilac.TradeName</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="kullanimBilgisi">Kullanım Bilgisi</label>
+                <textarea class="form-control" id="kullanimBilgisi" name="KullanimBilgisi" rows="3" required></textarea>
+            </div>
+            <input type="hidden" name="CreatedDate" value="@DateTime.Now" />
+            <button type="submit" class="btn btn-primary">Kaydet</button>
+        </form>
+    </div>
+</div>

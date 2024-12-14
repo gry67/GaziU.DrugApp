@@ -14,6 +14,8 @@ namespace GaziU.DrugApp.DAL.Models
         public string Sifre { get; set; }
 
         public ICollection<Hasta> Hastalar { get; set; }
-        public ICollection<DoktorMuayeneKaydi> DoktorMuayeneKayitlari { get; set; }
+
+        public  ICollection<MuayeneKaydi> MuayeneKayitlari { get; set; }
+
     }
 }

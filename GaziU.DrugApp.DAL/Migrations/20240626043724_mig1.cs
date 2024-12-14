@@ -34,7 +34,7 @@ namespace GaziU.DrugApp.DAL.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DogumTarihi = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DogumTarihi = table.Column<DateTime>(type: "datetime2", nullable: true),
                     EPosta = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Sifre = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -67,7 +67,7 @@ namespace GaziU.DrugApp.DAL.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DogumTarihi = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DogumTarihi = table.Column<DateTime>(type: "datetime2", nullable: true),
                     EPosta = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Sifre = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DoktorId = table.Column<int>(type: "int", nullable: false),
@@ -86,7 +86,7 @@ namespace GaziU.DrugApp.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "BeckAnksiyeteKayitlari",
+                name: "BarnesAkatiziKayitlari",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -108,6 +108,49 @@ namespace GaziU.DrugApp.DAL.Migrations
                 },
                 constraints: table =>
                 {
+                    table.PrimaryKey("PK_BarnesAkatiziKayitlari", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_BarnesAkatiziKayitlari_Hastalar_hastaId",
+                        column: x => x.hastaId,
+                        principalTable: "Hastalar",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "BeckAnksiyeteKayitlari",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    hastaId = table.Column<int>(type: "int", nullable: false),
+                    Soru1Puan = table.Column<byte>(type: "tinyint", nullable: false),
+                    Soru2Puan = table.Column<byte>(type: "tinyint", nullable: false),
+                    Soru3Puan = table.Column<byte>(type: "tinyint", nullable: false),
+                    Soru4Puan = table.Column<byte>(type: "tinyint", nullable: false),
+                    Soru5Puan = table.Column<byte>(type: "tinyint", nullable: false),
+                    Soru6Puan = table.Column<byte>(type: "tinyint", nullable: false),
+                    Soru7Puan = table.Column<byte>(type: "tinyint", nullable: false),
+                    Soru8Puan = table.Column<byte>(type: "tinyint", nullable: false),
+                    Soru9Puan = table.Column<byte>(type: "tinyint", nullable: false),
+                    Soru10Puan = table.Column<byte>(type: "tinyint", nullable: false),
+                    Soru11Puan = table.Column<byte>(type: "tinyint", nullable: false),
+                    Soru12Puan = table.Column<byte>(type: "tinyint", nullable: false),
+                    Soru13Puan = table.Column<byte>(type: "tinyint", nullable: false),
+                    Soru14Puan = table.Column<byte>(type: "tinyint", nullable: false),
+                    Soru15Puan = table.Column<byte>(type: "tinyint", nullable: false),
+                    Soru16Puan = table.Column<byte>(type: "tinyint", nullable: false),
+                    Soru17Puan = table.Column<byte>(type: "tinyint", nullable: false),
+                    Soru18Puan = table.Column<byte>(type: "tinyint", nullable: false),
+                    Soru19Puan = table.Column<byte>(type: "tinyint", nullable: false),
+                    Soru20Puan = table.Column<byte>(type: "tinyint", nullable: false),
+                    Soru21Puan = table.Column<byte>(type: "tinyint", nullable: false),
+                    ToplamPuan = table.Column<byte>(type: "tinyint", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
                     table.PrimaryKey("PK_BeckAnksiyeteKayitlari", x => x.Id);
                     table.ForeignKey(
                         name: "FK_BeckAnksiyeteKayitlari_Hastalar_hastaId",
@@ -118,21 +161,42 @@ namespace GaziU.DrugApp.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "doktorMuayeneKayitlari",
+                name: "BeckDepresyonKayitlari",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    MuayeneNotları = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     hastaId = table.Column<int>(type: "int", nullable: false),
+                    Soru1Puan = table.Column<byte>(type: "tinyint", nullable: false),
+                    Soru2Puan = table.Column<byte>(type: "tinyint", nullable: false),
+                    Soru3Puan = table.Column<byte>(type: "tinyint", nullable: false),
+                    Soru4Puan = table.Column<byte>(type: "tinyint", nullable: false),
+                    Soru5Puan = table.Column<byte>(type: "tinyint", nullable: false),
+                    Soru6Puan = table.Column<byte>(type: "tinyint", nullable: false),
+                    Soru7Puan = table.Column<byte>(type: "tinyint", nullable: false),
+                    Soru8Puan = table.Column<byte>(type: "tinyint", nullable: false),
+                    Soru9Puan = table.Column<byte>(type: "tinyint", nullable: false),
+                    Soru10Puan = table.Column<byte>(type: "tinyint", nullable: false),
+                    Soru11Puan = table.Column<byte>(type: "tinyint", nullable: false),
+                    Soru12Puan = table.Column<byte>(type: "tinyint", nullable: false),
+                    Soru13Puan = table.Column<byte>(type: "tinyint", nullable: false),
+                    Soru14Puan = table.Column<byte>(type: "tinyint", nullable: false),
+                    Soru15Puan = table.Column<byte>(type: "tinyint", nullable: false),
+                    Soru16Puan = table.Column<byte>(type: "tinyint", nullable: false),
+                    Soru17Puan = table.Column<byte>(type: "tinyint", nullable: false),
+                    Soru18Puan = table.Column<byte>(type: "tinyint", nullable: false),
+                    Soru19Puan = table.Column<byte>(type: "tinyint", nullable: false),
+                    Soru20Puan = table.Column<byte>(type: "tinyint", nullable: false),
+                    Soru21Puan = table.Column<byte>(type: "tinyint", nullable: false),
+                    ToplamPuan = table.Column<byte>(type: "tinyint", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_doktorMuayeneKayitlari", x => x.Id);
+                    table.PrimaryKey("PK_BeckDepresyonKayitlari", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_doktorMuayeneKayitlari_Hastalar_hastaId",
+                        name: "FK_BeckDepresyonKayitlari_Hastalar_hastaId",
                         column: x => x.hastaId,
                         principalTable: "Hastalar",
                         principalColumn: "Id",
@@ -175,6 +239,35 @@ namespace GaziU.DrugApp.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "MuayeneKayitlari",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    MuayeneNotu = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DoktorId = table.Column<int>(type: "int", nullable: false),
+                    HastaId = table.Column<int>(type: "int", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MuayeneKayitlari", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_MuayeneKayitlari_Doktorlar_DoktorId",
+                        column: x => x.DoktorId,
+                        principalTable: "Doktorlar",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_MuayeneKayitlari_Hastalar_HastaId",
+                        column: x => x.HastaId,
+                        principalTable: "Hastalar",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "HastaIlacKayitlari",
                 columns: table => new
                 {
@@ -204,13 +297,18 @@ namespace GaziU.DrugApp.DAL.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_BarnesAkatiziKayitlari_hastaId",
+                table: "BarnesAkatiziKayitlari",
+                column: "hastaId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_BeckAnksiyeteKayitlari_hastaId",
                 table: "BeckAnksiyeteKayitlari",
                 column: "hastaId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_doktorMuayeneKayitlari_hastaId",
-                table: "doktorMuayeneKayitlari",
+                name: "IX_BeckDepresyonKayitlari_hastaId",
+                table: "BeckDepresyonKayitlari",
                 column: "hastaId");
 
             migrationBuilder.CreateIndex(
@@ -242,19 +340,35 @@ namespace GaziU.DrugApp.DAL.Migrations
                 name: "IX_Hastalar_DoktorId",
                 table: "Hastalar",
                 column: "DoktorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MuayeneKayitlari_DoktorId",
+                table: "MuayeneKayitlari",
+                column: "DoktorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MuayeneKayitlari_HastaId",
+                table: "MuayeneKayitlari",
+                column: "HastaId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "BarnesAkatiziKayitlari");
+
+            migrationBuilder.DropTable(
                 name: "BeckAnksiyeteKayitlari");
 
             migrationBuilder.DropTable(
-                name: "doktorMuayeneKayitlari");
+                name: "BeckDepresyonKayitlari");
 
             migrationBuilder.DropTable(
                 name: "HastaIlacKayitlari");
+
+            migrationBuilder.DropTable(
+                name: "MuayeneKayitlari");
 
             migrationBuilder.DropTable(
                 name: "Drugs");

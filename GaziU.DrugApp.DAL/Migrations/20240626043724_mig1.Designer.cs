@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GaziU.DrugApp.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240616203201_mig1")]
+    [Migration("20240626043724_mig1")]
     partial class mig1
     {
         /// <inheritdoc />
@@ -106,7 +106,187 @@ namespace GaziU.DrugApp.DAL.Migrations
 
                     b.HasIndex("hastaId");
 
+                    b.ToTable("BarnesAkatiziKayitlari");
+                });
+
+            modelBuilder.Entity("GaziU.DrugApp.DAL.Models.BeckAnksiyeteOlcegiKayit", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<byte>("Soru10Puan")
+                        .HasColumnType("tinyint");
+
+                    b.Property<byte>("Soru11Puan")
+                        .HasColumnType("tinyint");
+
+                    b.Property<byte>("Soru12Puan")
+                        .HasColumnType("tinyint");
+
+                    b.Property<byte>("Soru13Puan")
+                        .HasColumnType("tinyint");
+
+                    b.Property<byte>("Soru14Puan")
+                        .HasColumnType("tinyint");
+
+                    b.Property<byte>("Soru15Puan")
+                        .HasColumnType("tinyint");
+
+                    b.Property<byte>("Soru16Puan")
+                        .HasColumnType("tinyint");
+
+                    b.Property<byte>("Soru17Puan")
+                        .HasColumnType("tinyint");
+
+                    b.Property<byte>("Soru18Puan")
+                        .HasColumnType("tinyint");
+
+                    b.Property<byte>("Soru19Puan")
+                        .HasColumnType("tinyint");
+
+                    b.Property<byte>("Soru1Puan")
+                        .HasColumnType("tinyint");
+
+                    b.Property<byte>("Soru20Puan")
+                        .HasColumnType("tinyint");
+
+                    b.Property<byte>("Soru21Puan")
+                        .HasColumnType("tinyint");
+
+                    b.Property<byte>("Soru2Puan")
+                        .HasColumnType("tinyint");
+
+                    b.Property<byte>("Soru3Puan")
+                        .HasColumnType("tinyint");
+
+                    b.Property<byte>("Soru4Puan")
+                        .HasColumnType("tinyint");
+
+                    b.Property<byte>("Soru5Puan")
+                        .HasColumnType("tinyint");
+
+                    b.Property<byte>("Soru6Puan")
+                        .HasColumnType("tinyint");
+
+                    b.Property<byte>("Soru7Puan")
+                        .HasColumnType("tinyint");
+
+                    b.Property<byte>("Soru8Puan")
+                        .HasColumnType("tinyint");
+
+                    b.Property<byte>("Soru9Puan")
+                        .HasColumnType("tinyint");
+
+                    b.Property<byte>("ToplamPuan")
+                        .HasColumnType("tinyint");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("hastaId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("hastaId");
+
                     b.ToTable("BeckAnksiyeteKayitlari");
+                });
+
+            modelBuilder.Entity("GaziU.DrugApp.DAL.Models.BeckDepresyonOlcegiKayit", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<byte>("Soru10Puan")
+                        .HasColumnType("tinyint");
+
+                    b.Property<byte>("Soru11Puan")
+                        .HasColumnType("tinyint");
+
+                    b.Property<byte>("Soru12Puan")
+                        .HasColumnType("tinyint");
+
+                    b.Property<byte>("Soru13Puan")
+                        .HasColumnType("tinyint");
+
+                    b.Property<byte>("Soru14Puan")
+                        .HasColumnType("tinyint");
+
+                    b.Property<byte>("Soru15Puan")
+                        .HasColumnType("tinyint");
+
+                    b.Property<byte>("Soru16Puan")
+                        .HasColumnType("tinyint");
+
+                    b.Property<byte>("Soru17Puan")
+                        .HasColumnType("tinyint");
+
+                    b.Property<byte>("Soru18Puan")
+                        .HasColumnType("tinyint");
+
+                    b.Property<byte>("Soru19Puan")
+                        .HasColumnType("tinyint");
+
+                    b.Property<byte>("Soru1Puan")
+                        .HasColumnType("tinyint");
+
+                    b.Property<byte>("Soru20Puan")
+                        .HasColumnType("tinyint");
+
+                    b.Property<byte>("Soru21Puan")
+                        .HasColumnType("tinyint");
+
+                    b.Property<byte>("Soru2Puan")
+                        .HasColumnType("tinyint");
+
+                    b.Property<byte>("Soru3Puan")
+                        .HasColumnType("tinyint");
+
+                    b.Property<byte>("Soru4Puan")
+                        .HasColumnType("tinyint");
+
+                    b.Property<byte>("Soru5Puan")
+                        .HasColumnType("tinyint");
+
+                    b.Property<byte>("Soru6Puan")
+                        .HasColumnType("tinyint");
+
+                    b.Property<byte>("Soru7Puan")
+                        .HasColumnType("tinyint");
+
+                    b.Property<byte>("Soru8Puan")
+                        .HasColumnType("tinyint");
+
+                    b.Property<byte>("Soru9Puan")
+                        .HasColumnType("tinyint");
+
+                    b.Property<byte>("ToplamPuan")
+                        .HasColumnType("tinyint");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("hastaId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("hastaId");
+
+                    b.ToTable("BeckDepresyonKayitlari");
                 });
 
             modelBuilder.Entity("GaziU.DrugApp.DAL.Models.Doktor", b =>
@@ -120,7 +300,7 @@ namespace GaziU.DrugApp.DAL.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("DogumTarihi")
+                    b.Property<DateTime?>("DogumTarihi")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("EPosta")
@@ -141,34 +321,6 @@ namespace GaziU.DrugApp.DAL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Doktorlar");
-                });
-
-            modelBuilder.Entity("GaziU.DrugApp.DAL.Models.DoktorMuayeneKaydi", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime?>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("MuayeneNotları")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("hastaId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("hastaId");
-
-                    b.ToTable("doktorMuayeneKayitlari");
                 });
 
             modelBuilder.Entity("GaziU.DrugApp.DAL.Models.Drug", b =>
@@ -220,7 +372,7 @@ namespace GaziU.DrugApp.DAL.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("DogumTarihi")
+                    b.Property<DateTime?>("DogumTarihi")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("DoktorId")
@@ -304,6 +456,39 @@ namespace GaziU.DrugApp.DAL.Migrations
                     b.ToTable("MedicineTypes");
                 });
 
+            modelBuilder.Entity("GaziU.DrugApp.DAL.Models.MuayeneKaydi", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("DoktorId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("HastaId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("MuayeneNotu")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DoktorId");
+
+                    b.HasIndex("HastaId");
+
+                    b.ToTable("MuayeneKayitlari");
+                });
+
             modelBuilder.Entity("GaziU.DrugApp.DAL.Models.BarnesAkatiziOlcegi", b =>
                 {
                     b.HasOne("GaziU.DrugApp.DAL.Models.Hasta", "hasta")
@@ -315,7 +500,18 @@ namespace GaziU.DrugApp.DAL.Migrations
                     b.Navigation("hasta");
                 });
 
-            modelBuilder.Entity("GaziU.DrugApp.DAL.Models.DoktorMuayeneKaydi", b =>
+            modelBuilder.Entity("GaziU.DrugApp.DAL.Models.BeckAnksiyeteOlcegiKayit", b =>
+                {
+                    b.HasOne("GaziU.DrugApp.DAL.Models.Hasta", "hasta")
+                        .WithMany()
+                        .HasForeignKey("hastaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("hasta");
+                });
+
+            modelBuilder.Entity("GaziU.DrugApp.DAL.Models.BeckDepresyonOlcegiKayit", b =>
                 {
                     b.HasOne("GaziU.DrugApp.DAL.Models.Hasta", "hasta")
                         .WithMany()
@@ -352,7 +548,7 @@ namespace GaziU.DrugApp.DAL.Migrations
             modelBuilder.Entity("GaziU.DrugApp.DAL.Models.Hasta", b =>
                 {
                     b.HasOne("GaziU.DrugApp.DAL.Models.Doktor", "Doktor")
-                        .WithMany("hastalar")
+                        .WithMany("Hastalar")
                         .HasForeignKey("DoktorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -379,14 +575,37 @@ namespace GaziU.DrugApp.DAL.Migrations
                     b.Navigation("Ilac");
                 });
 
+            modelBuilder.Entity("GaziU.DrugApp.DAL.Models.MuayeneKaydi", b =>
+                {
+                    b.HasOne("GaziU.DrugApp.DAL.Models.Doktor", "Doktor")
+                        .WithMany("MuayeneKayitlari")
+                        .HasForeignKey("DoktorId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("GaziU.DrugApp.DAL.Models.Hasta", "Hasta")
+                        .WithMany("MuayeneKayitlari")
+                        .HasForeignKey("HastaId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Doktor");
+
+                    b.Navigation("Hasta");
+                });
+
             modelBuilder.Entity("GaziU.DrugApp.DAL.Models.Doktor", b =>
                 {
-                    b.Navigation("hastalar");
+                    b.Navigation("Hastalar");
+
+                    b.Navigation("MuayeneKayitlari");
                 });
 
             modelBuilder.Entity("GaziU.DrugApp.DAL.Models.Hasta", b =>
                 {
                     b.Navigation("HastaDrugs");
+
+                    b.Navigation("MuayeneKayitlari");
                 });
 #pragma warning restore 612, 618
         }

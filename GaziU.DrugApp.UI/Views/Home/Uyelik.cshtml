@@ -1,11 +1,15 @@
-﻿@using GaziU.DrugApp.DAL.Models
-@model HomeViewModel
+﻿@model HastaDoktorInsertViewDto
 
-@{
-    ViewData["Title"] = "Psikiyatrik Tedavi Takip Sistemi";
-}
 
-<header>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>DoktorUyelik</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MhY7Xt+q7h1/LaVm12JXpTrxMJ1y+A1d5EnA91cxA4yeKJ4A9htqOzH5L+co2z1U" crossorigin="anonymous">
+</head>
+<body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
             <a class="navbar-brand" href="#">Psikiyatrik Tedavi Takip Sistemi</a>
@@ -28,17 +32,23 @@
                         <h4 class="card-title text-center">Giriş Yapın</h4>
                         <ul class="nav nav-tabs nav-justified mb-4" id="loginTabs" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" id="patient-tab" data-toggle="tab" href="#patient" role="tab" aria-controls="patient" aria-selected="true">Hasta Girişi</a>
+                                <a class="nav-link active" id="patient-tab" data-bs-toggle="tab" href="#patient" role="tab" aria-controls="patient" aria-selected="true">Hasta Girişi</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="doctor-tab" data-toggle="tab" href="#doctor" role="tab" aria-controls="doctor" aria-selected="false">Doktor Girişi</a>
+                                <a class="nav-link" id="doctor-tab" data-bs-toggle="tab" href="#doctor" role="tab" aria-controls="doctor" aria-selected="false">Doktor Girişi</a>
                             </li>
                         </ul>
+
                         <div class="tab-content" id="loginTabsContent">
-                          
-                            <!-- Hasta Girişi Formu -->
+
                             <div class="tab-pane fade show active" id="patient" role="tabpanel" aria-labelledby="patient-tab">
-                                <form method="post" action="/Home/Hastaİslemleri">
+
+                                <form method="post" action="/Home/HastaUyelik">
+                                    <input type="hidden" asp-for="hasta.CreatedDate" value="@DateTime.Now" />
+                                    <div class="form-group">
+                                        <label asp-for="hasta.Name">İsim</label>
+                                        <input asp-for="hasta.Name" class="form-control" type="text" required>
+                                    </div>
                                     <div class="form-group">
                                         <label asp-for="hasta.EPosta">E-posta</label>
                                         <input asp-for="hasta.EPosta" class="form-control" type="text" required>
@@ -48,44 +58,39 @@
                                         <input type="password" class="form-control" asp-for="hasta.Sifre" required>
                                     </div>
                                     <br />
-                                    <button type="submit" class="btn btn-primary btn-block">Giriş Yap</button>
+                                    <button class="btn btn-primary btn-block">Üye Ol</button>
                                 </form>
                             </div>
+
                             <div class="tab-pane fade" id="doctor" role="tabpanel" aria-labelledby="doctor-tab">
-                                <form method="post" action="/Home/Doktorİslemleri">
+                                
+                                <form method="post" action="/Home/DoktorUyelik">
+                                    <input type="hidden" asp-for="doktor.CreatedDate" value="@DateTime.Now" />
+                                    <div class="form-group">
+                                        <label asp-for="doktor.Name">İsim</label>
+                                        <input asp-for="doktor.Name" class="form-control" type="text" required>
+                                    </div>
                                     <div class="form-group">
                                         <label asp-for="doktor.EPosta">E-posta</label>
-                                        <input asp-for="doktor.EPosta" type="text" class="form-control" required>
+                                        <input asp-for="doktor.EPosta" class="form-control" type="text" required>
                                     </div>
                                     <div class="form-group">
                                         <label asp-for="doktor.Sifre">Şifre</label>
-                                        <input asp-for="doktor.Sifre" type="password" class="form-control" required>
+                                        <input type="password" class="form-control" asp-for="doktor.Sifre" required>
                                     </div>
                                     <br />
-                                    <button type="submit" class="btn btn-primary btn-block">Giriş Yap</button>
+                                    <button class="btn btn-primary btn-block">Üye Ol</button>
                                 </form>
+
                             </div>
-                        </div>
-                        <div class="text-center mt-3">
-                            <a href="/Home/Uyelik" class="btn btn-primary">Üye Ol</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</header>
 
-@section Scripts {
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRkfu/XK0NfX7FfZfjAN9tS+MHR49u5RR9/pbzh/y" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js" integrity="sha384-lpyKZP0f4K6f6I7i86e6ImDJ1hkgLUrcI1lUmBgLsZO6B5OjDhK4sO8D5N+J7jD4" crossorigin="anonymous"></script>
-    <script>
-        $(document).ready(function () {
-            // Tab değişim olayını kontrol et
-            $('#loginTabs a').on('click', function (e) {
-                e.preventDefault();
-                $(this).tab('show');
-            });
-        });
-    </script>
-}
+</body>
+</html>

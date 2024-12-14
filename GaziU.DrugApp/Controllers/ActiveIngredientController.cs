@@ -6,11 +6,13 @@ using GaziU.DrugApp.Dtos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using GaziU.DrugApp.BL.Dtos;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GaziU.DrugApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ActiveIngredientController : ControllerBase
     {
         private readonly IGenericManager<ActiveIngredient> _genericManager;

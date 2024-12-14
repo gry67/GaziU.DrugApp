@@ -19,9 +19,9 @@ namespace GaziU.DrugApp.BL.Concrete
             _repository = repository;
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
-            await _repository.DeleteAsync(id);
+            return await _repository.DeleteAsync(id);
         }
 
         public async Task<IEnumerable<T>> GetAll(Expression<Func<T, bool>> expression)

@@ -18,14 +18,18 @@ namespace GaziU.DrugApp.DAL.Repositories.Concrete
         {
             this.context = context;
         }
-        public async Task DeleteAsync(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
             var entity = await context.Hastalar.FindAsync(id);
             if (entity != null)
             {
                 context.Remove(entity);
+                if (await context.SaveChangesAsync() > 0)
+                {
+                    return true;
+                } else { return false; }
             }
-            await context.SaveChangesAsync();
+            return false;
         }
 
         public async Task<IEnumerable<Hasta>> GetAll(Expression<Func<Hasta, bool>> expression)

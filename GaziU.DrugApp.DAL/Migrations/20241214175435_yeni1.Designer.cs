@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GaziU.DrugApp.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240616215614_mig6")]
-    partial class mig6
+    [Migration("20241214175435_yeni1")]
+    partial class yeni1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -323,39 +323,6 @@ namespace GaziU.DrugApp.DAL.Migrations
                     b.ToTable("Doktorlar");
                 });
 
-            modelBuilder.Entity("GaziU.DrugApp.DAL.Models.DoktorMuayeneKaydi", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime?>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("DoktorId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("MuayeneNotları")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("hastaId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DoktorId");
-
-                    b.HasIndex("hastaId");
-
-                    b.ToTable("doktorMuayeneKayitlari");
-                });
-
             modelBuilder.Entity("GaziU.DrugApp.DAL.Models.Drug", b =>
                 {
                     b.Property<int>("Id")
@@ -408,7 +375,7 @@ namespace GaziU.DrugApp.DAL.Migrations
                     b.Property<DateTime?>("DogumTarihi")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("DoktorId")
+                    b.Property<int?>("DoktorId")
                         .HasColumnType("int");
 
                     b.Property<string>("EPosta")
@@ -489,6 +456,39 @@ namespace GaziU.DrugApp.DAL.Migrations
                     b.ToTable("MedicineTypes");
                 });
 
+            modelBuilder.Entity("GaziU.DrugApp.DAL.Models.MuayeneKaydi", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("DoktorId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("HastaId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("MuayeneNotu")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DoktorId");
+
+                    b.HasIndex("HastaId");
+
+                    b.ToTable("MuayeneKayitlari");
+                });
+
             modelBuilder.Entity("GaziU.DrugApp.DAL.Models.BarnesAkatiziOlcegi", b =>
                 {
                     b.HasOne("GaziU.DrugApp.DAL.Models.Hasta", "hasta")
@@ -522,25 +522,6 @@ namespace GaziU.DrugApp.DAL.Migrations
                     b.Navigation("hasta");
                 });
 
-            modelBuilder.Entity("GaziU.DrugApp.DAL.Models.DoktorMuayeneKaydi", b =>
-                {
-                    b.HasOne("GaziU.DrugApp.DAL.Models.Doktor", "Doktor")
-                        .WithMany()
-                        .HasForeignKey("DoktorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("GaziU.DrugApp.DAL.Models.Hasta", "hasta")
-                        .WithMany()
-                        .HasForeignKey("hastaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Doktor");
-
-                    b.Navigation("hasta");
-                });
-
             modelBuilder.Entity("GaziU.DrugApp.DAL.Models.Drug", b =>
                 {
                     b.HasOne("GaziU.DrugApp.DAL.Models.ActiveIngredient", "ActiveIngredient")
@@ -567,10 +548,8 @@ namespace GaziU.DrugApp.DAL.Migrations
             modelBuilder.Entity("GaziU.DrugApp.DAL.Models.Hasta", b =>
                 {
                     b.HasOne("GaziU.DrugApp.DAL.Models.Doktor", "Doktor")
-                        .WithMany("hastalar")
-                        .HasForeignKey("DoktorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("Hastalar")
+                        .HasForeignKey("DoktorId");
 
                     b.Navigation("Doktor");
                 });
@@ -594,14 +573,37 @@ namespace GaziU.DrugApp.DAL.Migrations
                     b.Navigation("Ilac");
                 });
 
+            modelBuilder.Entity("GaziU.DrugApp.DAL.Models.MuayeneKaydi", b =>
+                {
+                    b.HasOne("GaziU.DrugApp.DAL.Models.Doktor", "Doktor")
+                        .WithMany("MuayeneKayitlari")
+                        .HasForeignKey("DoktorId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("GaziU.DrugApp.DAL.Models.Hasta", "Hasta")
+                        .WithMany("MuayeneKayitlari")
+                        .HasForeignKey("HastaId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Doktor");
+
+                    b.Navigation("Hasta");
+                });
+
             modelBuilder.Entity("GaziU.DrugApp.DAL.Models.Doktor", b =>
                 {
-                    b.Navigation("hastalar");
+                    b.Navigation("Hastalar");
+
+                    b.Navigation("MuayeneKayitlari");
                 });
 
             modelBuilder.Entity("GaziU.DrugApp.DAL.Models.Hasta", b =>
                 {
                     b.Navigation("HastaDrugs");
+
+                    b.Navigation("MuayeneKayitlari");
                 });
 #pragma warning restore 612, 618
         }

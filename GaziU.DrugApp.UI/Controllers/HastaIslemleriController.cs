@@ -18,13 +18,14 @@ namespace GaziU.DrugApp.UI.Controllers
 
 
 
-        public HastaIslemleriController(IDrugManager drugManager, IGenericManager<HastaIlacKayit> genericManager, IGenericManager<Hasta> hastaManager, IGenericManager<BeckDepresyonOlcegiKayit> beckManager, IGenericManager<BeckAnksiyeteOlcegiKayit> anksiyeteManager)
+        public HastaIslemleriController(IDrugManager drugManager, IGenericManager<HastaIlacKayit> genericManager, IGenericManager<Hasta> hastaManager, IGenericManager<BeckDepresyonOlcegiKayit> beckManager, IGenericManager<BeckAnksiyeteOlcegiKayit> anksiyeteManager, IGenericManager<BarnesAkatiziOlcegi> barnesManager)
         {
             this.drugManager = drugManager;
             manager = genericManager;
             this.hastaManager = hastaManager;
             this.beckManager = beckManager;
             this.anksiyeteManager = anksiyeteManager;
+            this.barnesManager = barnesManager;
         }
 
         public async Task<IActionResult> HastaIslemleriIndex(Hasta hasta)
@@ -76,6 +77,7 @@ namespace GaziU.DrugApp.UI.Controllers
                     });
                 }
             }
+            ViewBag.hastaId = hasta.Id;
 
             ViewBag.IlacKayitlari = kayitlar;
             return View(hasta);
@@ -102,7 +104,7 @@ namespace GaziU.DrugApp.UI.Controllers
 
         public async Task<IActionResult> YapilanTestler(int id)
         {
-
+            //Anksiyete testleri
             if (id == 0)
             {
                 return NotFound("id 0 geldi");
@@ -123,7 +125,6 @@ namespace GaziU.DrugApp.UI.Controllers
 
         public async Task<IActionResult> BeckDepresyonTestler(int id)
         {
-
             if (id == 0)
             {
                 return NotFound("id 0 geldi");
@@ -138,9 +139,9 @@ namespace GaziU.DrugApp.UI.Controllers
 
             ViewBag.hastaId = id;
 
-
             return View(kayitlar);
         }
+
         public async Task<IActionResult> BarnesAkatiziTesleri(int id)
         {
 

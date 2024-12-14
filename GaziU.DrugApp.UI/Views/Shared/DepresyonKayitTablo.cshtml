@@ -1,0 +1,30 @@
+﻿@using GaziU.DrugApp.DAL.Models
+@model List<BeckDepresyonOlcegiKayit>
+
+<div class="col-md-9">
+    <h3>Beck Depresyon Test Sonuçları</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Test Puanı</th>
+                <th>Test Tarihi</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var kayit in Model ?? new List<BeckDepresyonOlcegiKayit>())
+            {
+                <tr>
+                    <td>@kayit.ToplamPuan</td>
+                    <td>@kayit.CreatedDate</td>
+                    <td>
+                        <form method="post" asp-controller="DoktorIslemleri" asp-action="DepresyonTestSil">
+                            <input type="hidden" name="hastaId" value="@kayit.hastaId" />
+                            <input type="hidden" name="Id" value="@kayit.Id" />
+                            <button type="submit" class="btn btn-danger">Test Sonucunu Sil</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

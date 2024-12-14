@@ -4,6 +4,7 @@ using GaziU.DrugApp.BL.Abstract;
 using GaziU.DrugApp.BL.Dtos;
 using GaziU.DrugApp.DAL.Models;
 using GaziU.DrugApp.Dtos;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.DataAnnotations;
@@ -12,6 +13,7 @@ namespace GaziU.DrugApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class DrugController : ControllerBase
     {
         private readonly IGenericManager<Drug> _genericManager;

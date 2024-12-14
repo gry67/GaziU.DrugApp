@@ -14,7 +14,7 @@ namespace GaziU.DrugApp.DAL.Repositories.Abstract
         Task<IEnumerable<T>> GetAll(Expression<Func<T, bool>> expression);
         Task<bool> InsertAsync(T entity);
         Task UpdateAsync(T entity);
-        Task DeleteAsync(int id);
+        Task<bool> DeleteAsync(int id);
 
     }
 }

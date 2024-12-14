@@ -2,37 +2,40 @@
 @model BeckDepresyonOlcegiKayit
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="#">Psikiyatrik Tedavi Takip Sistemi</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Anasayfa</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Hakkımızda</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">İletişim</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Çıkış Yap</a>
-                    </li>
-                </ul>
-            </div>
+    <div class="container">
+        <a class="navbar-brand" href="#">Psikiyatrik Tedavi Takip Sistemi</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Testler" asp-action="BeckAnksiyete" asp-route-hastaId="@ViewBag.hastaId">Beck Anksiyete Ölçeği</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Testler" asp-action="BeckDepresyon" asp-route-hastaId="@ViewBag.hastaId">Beck Depresyon Ölçeği</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Testler" asp-action="BarnesAkatiziTesti" asp-route-hastaId="@ViewBag.hastaId">Barnes Akatizi Ölçeği</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Home" asp-action="Index">Çıkış Yap</a>
+                </li>
+            </ul>
         </div>
-    </nav>
+    </div>
+</nav>
 
-    <!-- Beck Depresyon Ölçeği Formu -->
+<!-- Beck Depresyon Ölçeği Formu -->
     <div class="container mt-5">
         <h2 class="text-center">Beck Depresyon Ölçeği</h2>
         <form method="post"  action="@Url.Action("BeckDepresyonKayit", "Testler")">
-        <input name="hastaId"  type="hidden" value="@ViewBag.hastaId" />
-            
-            <div class="mb-3">
+
+        <input name="CreatedDate" type="hidden" value="@DateTime.Now" />
+        <input name="hastaId" asp-for="hastaId" type="hidden" value="@ViewBag.hastaId" />
+        <input name="ToplamPuan" asp-for="ToplamPuan" type="hidden" value="" />
+
+        <div class="mb-3">
                 <label class="form-label">1 - Üzgün hissetme</label><br>
                 <select class="form-select" name="Soru1Puan" required>
                     <option value="">Seçiniz</option>
@@ -261,7 +264,6 @@
                 <option value="3">Kafamda her an her şey hakkında olumsuz düşünceler dönüyor ve bu düşünceleri durduramıyorum.</option>
             </select>
         </div>
-        <input />
         <div class="text-center">
             <button type="submit" class="btn btn-primary">Formu Gönder</button>
         </div>

@@ -1,5 +1,5 @@
 ﻿@using GaziU.DrugApp.DAL.Models
-@model BarnesAkatiziOlcegi
+@model BeckAnksiyeteOlcegiKayit
 
 
 
@@ -21,16 +21,16 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Anasayfa</a>
+                        <a class="nav-link" asp-controller="Testler" asp-action="BeckAnksiyete" asp-route-hastaId="@ViewBag.hastaId">Beck Anksiyete Ölçeği</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Hakkımızda</a>
+                        <a class="nav-link" asp-controller="Testler" asp-action="BeckDepresyon" asp-route-hastaId="@ViewBag.hastaId">Beck Depresyon Ölçeği</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">İletişim</a>
+                        <a class="nav-link" asp-controller="Testler" asp-action="BarnesAkatiziTesti" asp-route-hastaId="@ViewBag.hastaId">Barnes Akatizi Ölçeği</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Çıkış Yap</a>
+                        <a class="nav-link" asp-controller="Home" asp-action="Index">Çıkış Yap</a>
                     </li>
                 </ul>
             </div>
@@ -41,9 +41,14 @@
 
     <!-- Beck Anksiyete Ölçeği Formu -->
     <div class="container mt-5">
+        
         <h2 class="text-center">Beck Anksiyete Ölçeği</h2>
+        
         <form method="post" action="@Url.Action("BeckAnksiyeteKayit", "Testler")">
-            <input name="hastaId" asp-for="hastaId" type="hidden" value="@ViewBag.hastaId" />
+            
+            <input name="hastaId" type="hidden" value="@ViewBag.hastaId" />
+            <input asp-for="CreatedDate" type="hidden" value="@DateTime.Now" />
+            
             <div class="mb-3">
                 <label class="form-label">1 - Bedeninin herhangi bir yerinde uyuşma veya karıncalanma</label><br>
                 <select class="form-select" name="Soru1Puan" required>
@@ -254,12 +259,14 @@
                     <option value="3">Ciddi Düzeyde - Dayanmakta çok zorlandım</option>
                 </select>
             </div>
+            
             <input type="hidden" name="ToplamPuan" value="" />
+            
             <button type="submit" class="btn btn-primary">Ölçeği Gönder</button>
         </form>
+    
     </div>
 
-    <p>@ViewBag.hastaId</p>
     <br />
     <br />
     <br />

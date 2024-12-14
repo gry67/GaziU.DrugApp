@@ -1,0 +1,26 @@
+﻿@using GaziU.DrugApp.DAL.Models
+@model Hasta
+
+<div class="col-md-3">
+<div class="col-md-9">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>İlaç Adı</th>
+                <th>Kullanım Bilgisi</th>
+                <th>Kayıt Tarihi</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var ilac in ViewBag.IlacKayitlari as List<IlacKayitlariViewModel> ?? new List<IlacKayitlariViewModel>())
+            {
+                <tr>
+                    <td>@ilac.İlacAdi</td>
+                    <td>@ilac.KullanimBilgisi</td>
+                    <td>@ilac.KayitTarihi?.ToString()</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+</div>

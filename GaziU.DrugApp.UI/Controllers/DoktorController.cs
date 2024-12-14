@@ -8,9 +8,9 @@ namespace GaziU.DrugApp.UI.Controllers
     public class DoktorController : Controller
     {
         private readonly IGenericManager<Hasta> hastaManager;
-        private readonly IGenericManager<DoktorMuayeneKaydi> muayeneManager;
+        private readonly IGenericManager<MuayeneKaydi> muayeneManager;
 
-        public DoktorController(IGenericManager<Hasta> hastaManager, IGenericManager<DoktorMuayeneKaydi> muayeneManager)
+        public DoktorController(IGenericManager<Hasta> hastaManager, IGenericManager<MuayeneKaydi> muayeneManager)
         {
             this.hastaManager = hastaManager;
             this.muayeneManager = muayeneManager;
@@ -30,12 +30,10 @@ namespace GaziU.DrugApp.UI.Controllers
             return View();
         }
 
-        public async Task<IActionResult> HastaMuayeneKayitEkle(DoktorMuayeneKaydi kayit)
+        public async Task<IActionResult> HastaMuayeneKayitEkle(MuayeneKaydi kayit)
         {
             await muayeneManager.InsertAsync(kayit);
-            return RedirectToAction("Index");
+            return RedirectToAction("HastaMuayene",new {hastaId=kayit.HastaId, doktorId=kayit.DoktorId});
         }
-
-
     }
 }

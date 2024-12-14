@@ -16,16 +16,16 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Anasayfa</a>
+                        <a class="nav-link" asp-controller="Testler" asp-action="BeckAnksiyete" asp-route-hastaId="@ViewBag.hastaId">Beck Anksiyete Ölçeği</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Hakkımızda</a>
+                        <a class="nav-link" asp-controller="Testler" asp-action="BeckDepresyon" asp-route-hastaId="@ViewBag.hastaId">Beck Depresyon Ölçeği</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">İletişim</a>
+                        <a class="nav-link" asp-controller="Testler" asp-action="BarnesAkatiziTesti" asp-route-hastaId="@ViewBag.hastaId">Barnes Akatizi Ölçeği</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Çıkış Yap</a>
+                        <a class="nav-link" asp-controller="Home" asp-action="Index">Çıkış Yap</a>
                     </li>
                 </ul>
             </div>
@@ -34,8 +34,11 @@
 
     <!-- Barnes Akatizi Ölçeği Formu -->
     <div class="container mt-5">
+
         <h2 class="text-center">Barnes Akatizi Ölçeği</h2>
-        <form id="barnesForm">
+        <form id="barnesForm" method="post" action="/Testler/BarnesAkatiziTestiKayit">
+
+            <input name="CreatedDate" type="hidden" value="@DateTime.Now" />
             <!-- Sorular ve puanlama seçenekleri -->
             <div class="mb-3">
                 <label class="form-label">1 - Hareket etme isteksizliği (kol ve bacaklarda)</label><br>
@@ -147,15 +150,15 @@
                 </select>
             </div>
 
-            <div class="text-center">
-                <button type="button" class="btn btn-primary" onclick="hesaplaToplamPuan()">Toplam Puanı Hesapla</button>
-            </div>
+            <input type="hidden" name="ToplamPuan" value="">
+            <input type="hidden" name="hastaId" value="@ViewBag.hastaId">
 
-            <div class="mb-3">
-                <label class="form-label">Toplam Puan</label>
-                <input type="text" class="form-control" name="ToplamPuan" readonly>
-            </div>
+            <button type="submit" class="btn btn-primary" id="submitBtn">Ölçeği Gönder</button>
         </form>
+
+        <br />
+        <br />
+        <br />
     </div>
 
     <script>
@@ -163,22 +166,24 @@
             const form = document.querySelector('form');
 
             form.addEventListener('submit', function (event) {
-                event.preventDefault(); 
+                // Form submit olayını durdur
+                event.preventDefault();
 
                 let totalScore = 0;
 
-              
-                for (let i = 1; i <= 21; i++) {
+                // Her bir soru için seçilen değeri al
+                for (let i = 1; i <= 10; i++) {
                     const selectElement = document.querySelector(`select[name="Soru${i}Puan"]`);
-                    const selectedValue = parseInt(selectElement.value); 
+                    const selectedValue = parseInt(selectElement.value); // Seçilen değeri integer'a çevir
 
-                    totalScore += selectedValue; 
+                    totalScore += selectedValue; // Toplam puanı güncelle
                 }
 
-                
+                // Toplam puanı "ToplamPuan" adlı inputun value'sine ata
                 const toplamPuanInput = document.querySelector('input[name="ToplamPuan"]');
                 toplamPuanInput.value = totalScore;
 
+                // Formu gönder
                 form.submit();
             });
         });

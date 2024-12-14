@@ -29,11 +29,13 @@ namespace GaziU.DrugApp.UI.Controllers
             ViewBag.hastaId = hastaId;
             return View();
         }
+
+        [HttpPost]
         public async Task<IActionResult> BeckAnksiyeteKayit(BeckAnksiyeteOlcegiKayit kayit) 
         {
             await anksiyeteManager.InsertAsync(kayit);
             var entity = hastaManager.GetByIdAsync(kayit.hastaId);
-            return View("/HastaIslemleri/HastaIslemleriIndex",entity);
+            return RedirectToAction("HastaIslemleriIndexById", "HastaIslemleri", new { hastaId = kayit.hastaId });
         }
 
         public IActionResult BeckDepresyon(int hastaId)
@@ -41,11 +43,12 @@ namespace GaziU.DrugApp.UI.Controllers
             ViewBag.hastaId = hastaId;
             return View();
         }
+        [HttpPost]
         public async Task<IActionResult> BeckDepresyonKayit(BeckDepresyonOlcegiKayit kayit)
         {
             await depresyonManager.InsertAsync(kayit);
             var entity = hastaManager.GetByIdAsync(kayit.hastaId);
-            return View("/HastaIslemleri/HastaIslemleriIndex",entity);
+            return RedirectToAction("HastaIslemleriIndexById", "HastaIslemleri", new { hastaId = kayit.hastaId });
         }
 
         public async Task<IActionResult> BarnesAkatiziTesti(int hastaId)
@@ -54,11 +57,12 @@ namespace GaziU.DrugApp.UI.Controllers
             return View();
         }
 
+        [HttpPost]
         public async Task<IActionResult> BarnesAkatiziTestiKayit(BarnesAkatiziOlcegi kayit)
         {
             await barnesManager.InsertAsync(kayit);
             var entity = hastaManager.GetByIdAsync(kayit.hastaId);
-            return View("/HastaIslemleri/HastaIslemleriIndex",entity);
+            return RedirectToAction("HastaIslemleriIndexById", "HastaIslemleri", new { hastaId = kayit.hastaId });
         }
     }
 }

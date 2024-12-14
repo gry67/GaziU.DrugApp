@@ -1,0 +1,23 @@
+﻿@using GaziU.DrugApp.DAL.Models
+@model List<BarnesAkatiziOlcegi>
+
+<div class="col-md-9">
+    <table class="table">
+        <h3>Barnes Akatizi Test Sonuçları</h3>
+        <thead>
+            <tr>
+                <th>Test Puanı</th>
+                <th>Test Tarihi</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var kayit in Model ?? new List<BarnesAkatiziOlcegi>())
+            {
+                <tr>
+                    <td>@kayit.ToplamPuan</td>
+                    <td>@kayit.CreatedDate</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
