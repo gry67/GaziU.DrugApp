@@ -18,7 +18,6 @@ namespace GaziU.DrugApp.UI.Controllers
             this.hastaManager = hastaManager;
             this.muayeneManager = muayeneManager;
             this.doktorManager = doktorManager;
-            doktorId = FindIdByCookie();
         }
 
         private int FindIdByCookie()
@@ -30,6 +29,7 @@ namespace GaziU.DrugApp.UI.Controllers
 
         public async Task<IActionResult> Index()
         {
+            doktorId = FindIdByCookie();
             var entities = await hastaManager.GetAll(h => h.DoktorId == doktorId);
             var doktor = await doktorManager.GetByIdAsync(doktorId);
 
